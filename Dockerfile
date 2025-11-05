@@ -33,6 +33,16 @@ RUN sbuild-createchroot unstable /srv/chroot/unstable-amd64-sbuild http://deb.de
 # ------------------------------------------------------------
 RUN apt-get update && apt-get install -y bash-completion && rm -rf /var/lib/apt/lists/*
 
+# Additional pkgs:
+RUN apt-get update && apt-get install -y \
+    build-essential fakeroot lintian debhelper equivs \
+    apt-utils dirmngr gnupg ca-certificates eatmydata aspcud gdebi-core \
+    schroot debootstrap piuparts \
+    autopkgtest autodep8 \
+    quilt dh-make devscripts debian-keyring debian-archive-keyring \
+    vim bash-completion less wget curl sudo locales git cmake \
+ && rm -rf /var/lib/apt/lists/*
+ 
 # ------------------------------------------------------------
 # Step 5: Default shell and working directory
 # ------------------------------------------------------------
